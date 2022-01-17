@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "game01.js",
-  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start02": "nodemon --exec ts-node game01/game01.ts --watch game01",
+    "start": "ts-node "
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-ts": "^5.1.2",
+    "nodemon": "^2.0.15",
+    "typescript": "^4.5.4",
+    "@types/node": "13.1"
+  }
 }

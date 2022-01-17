@@ -1,4 +1,4 @@
-import { Item } from "../interfaces/item.interface";
+import { Item } from "../../interfaces/item.interface";
 import { qualityValuesMinMaxLengendary } from "./qualityValues";
 
 const qualityValues = qualityValuesMinMaxLengendary();

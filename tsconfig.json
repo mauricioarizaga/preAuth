@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "Commonjs",
+    "outDir": "dist",
+    "sourceMap": true,
+    "esModuleInterop": true
+  },
+  "include": ["game01/**/*.ts", "game02/**/*.ts"],
+  "exclude": ["node_modules"]
+}
