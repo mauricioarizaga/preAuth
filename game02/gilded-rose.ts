@@ -5,7 +5,7 @@ import {
   updateQualityForSulfuras,
   updateQualityForConjured,
   updateQualityForNormalItem,
-} from "./updateQuality";
+} from "./services/updateQuality";
 const objectNames = {
   nameAB: "Aged Brie",
   nameConcert: "Backstage passes to a TAFKAL80ETC concert",
@@ -21,19 +21,22 @@ export class GildedRose {
 
   updateQuality(): Item[] {
     this.items.forEach((currentItem) => {
-      if (currentItem.name === objectNames.nameAB) {
-        currentItem = updateQualityForAgedBrie(currentItem);
-      }
-      if (currentItem.name === objectNames.nameConcert) {
-        currentItem = updateQualityForConcert(currentItem);
-      }
-      if (currentItem.name === objectNames.nameSulfuras) {
-        currentItem = updateQualityForSulfuras(currentItem);
-      }
-      if (currentItem.name === objectNames.nameConjured) {
-        currentItem = updateQualityForConjured(currentItem);
-      } else {
-        currentItem = updateQualityForNormalItem(currentItem);
+      switch (currentItem.name) {
+        case objectNames.nameAB:
+          currentItem = updateQualityForAgedBrie(currentItem);
+          break;
+        case objectNames.nameConcert:
+          currentItem = updateQualityForConcert(currentItem);
+          break;
+        case objectNames.nameSulfuras:
+          currentItem = updateQualityForSulfuras(currentItem);
+          break;
+        case objectNames.nameConjured:
+          currentItem = updateQualityForConjured(currentItem);
+          break;
+        default:
+          currentItem = updateQualityForNormalItem(currentItem);
+          break;
       }
     });
     return this.items;

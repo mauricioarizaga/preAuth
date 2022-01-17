@@ -1,9 +1,9 @@
-import { Item } from "./interfaces/item.interface";
+import { Item } from "../interfaces/item.interface";
+import { updateQualityItemNormalConjured } from "./utils/qualityDecrease";
 import {
   increaseQuality,
   increaseQualityForConcert,
-  updateQualityItemNormalConjured,
-} from "./utils/qualityIncreaseDecrease";
+} from "./utils/qualityIncrease";
 import { qualityValuesMinMaxLengendary } from "./utils/qualityValues";
 const qualityValues = qualityValuesMinMaxLengendary();
 
@@ -24,7 +24,13 @@ export const updateQualityForConcert = (item: Item): Item => {
   return item;
 };
 
-export const updateQualityForConjured = (item): Item => {
+export const updateQualityConjured = (item: Item): Item => {
+  item = updateQualityItemNormalConjured(item);
+  item = updateQualityItemNormalConjured(item);
+  return item;
+};
+
+export const updateQualityForConjured = (item: Item): Item => {
   if (item.sellIn === 5) {
     item.quality -= 3;
   } else {
@@ -35,6 +41,7 @@ export const updateQualityForConjured = (item): Item => {
 
   return item;
 };
+
 export const updateQualityForNormalItem = (item): Item => {
   item = updateQualityItemNormalConjured(item);
   item.sellIn -= 1;
