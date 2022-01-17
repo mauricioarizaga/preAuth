@@ -1,40 +1,24 @@
-import { isArrayIntegers } from "./utils/checkArray.js";
+import { isArrayMiddleware, isNumberInteger } from "./utils/checkArray.js";
+
 const game01 = (arr, number) => {
-  try {
-    if (isArrayIntegers(arr) === 0) {
-      if (arr.length < 2) {
-        console.log({ error: "The Array is empty or has one element" });
-        return;
-      }
-      if (!Number.isInteger(number)) {
-        console.log({ error: "The number is not an integer" });
-        return;
-      }
-    } else {
-      console.log({ error: "Some Array elements are not integers" });
-      return;
-    }
-    let flagStopWhile = true;
-    arr.forEach((element) => {
-      let j = 0;
-      while (j < arr.length - 2 && flagStopWhile) {
-        if (element + arr[j + 1] == number) {
-          console.log(
-            `The pair of elements in ${arr} who sums ${number} are `,
-            [element, arr[j + 1]]
-          );
-          flagStopWhile = false;
-          break;
-        }
-        ++j;
-      }
-    });
-    if (flagStopWhile)
-      console.log(`There is not pair of elements in ${arr} who sums ${number}`);
+  if (!isNumberInteger(number)) {
+    console.log({ error: "The number is not an integer" });
     return;
-  } catch (error) {
-    throw error;
+  }
+  if (isArrayMiddleware(arr)) {
+    let resultSubSetArray = [];
+    let s = new Set();
+    for (let i = 0; i < arr.length; ++i) {
+      let temp = number - arr[i];
+      if (s.has(temp)) {
+        resultSubSetArray.push(temp, arr[i]);
+        console.log(resultSubSetArray);
+        return;
+      }
+      s.add(arr[i]);
+    }
+    console.log({ message: `there is not a pair in array who sum ${number}` });
   }
 };
-let arr = [1, 2, 3, 5, 3];
-game01(arr, 4);
+let arr = [1, 4, 3, 5, 3];
+game01(arr, 1);
